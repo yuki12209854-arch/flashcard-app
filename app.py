@@ -4,6 +4,7 @@ import re
 import json
 from datetime import datetime, timedelta
 import random
+import os
 
 # ------------------------------------------------------------------
 # ページ設定 & スタイル
