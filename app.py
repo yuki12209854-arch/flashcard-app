@@ -79,6 +79,13 @@ if 'decks' not in st.session_state:
             "createdAt": "2026-07-03T11:00:00Z"
         }
     ]
+    # ファイルからデータを読み込む処理
+if os.path.exists("cards_data.csv"):
+    df_loaded = pd.read_csv("cards_data.csv")
+    st.session_state.cards = df_loaded.to_dict('records')
+else:
+    # ファイルがない時の初期値
+    st.session_state.cards = [...] # ←元の初期データを入れる
 
 if 'cards' not in st.session_state:
     st.session_state.cards = [
@@ -440,6 +447,14 @@ elif menu == "🎴 カード編集・登録":
                             st.session_state.cards = [x for x in st.session_state.cards if x['id'] != c['id']]
                             st.error("カードを削除しました。")
                             st.rerun()
+                            # --- ここから追加する保存ボタン ---
+        if st.button("💾 全ての変更をファイルに保存する"):
+            # 現在のメモリ上のカードデータをデータフレーム化
+            df_save = pd.DataFrame(st.session_state.cards)
+            # CSVに書き出し（これが保存の正体です）
+            df_save.to_csv("cards_data.csv", index=False)
+            st.success("最新のカードデータをCSVに保存しました！")
+        # --- ここまで ---
 
 # ------------------------------------------------------------------
 # 📖 暗記＆クイズテスト
