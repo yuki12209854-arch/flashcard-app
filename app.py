@@ -80,13 +80,23 @@ if 'decks' not in st.session_state:
             "createdAt": "2026-07-03T11:00:00Z"
         }
     ]
-    # ファイルからデータを読み込む処理
-if os.path.exists("cards_data.csv"):
-    df_loaded = pd.read_csv("cards_data.csv")
-    st.session_state.cards = df_loaded.to_dict('records')
-else:
-    # ファイルがない時の初期値
-    st.session_state.cards = [...] # ←元の初期データを入れる
+   # ------------------------------------------------------------------
+# データの読み込み・初期化（修正版）
+# ------------------------------------------------------------------
+DEFAULT_CARDS = [
+    {"id": "c1", "deckId": "deck-1", "front": "憲法第9条", "back": "戦争の放棄", "importance": 5, "createdAt": "2026-07-08T00:00:00Z"},
+    {"id": "c2", "deckId": "deck-1", "front": "憲法第13条", "back": "個人の尊重", "importance": 5, "createdAt": "2026-07-08T00:00:00Z"}
+]
+
+if 'cards' not in st.session_state:
+    if os.path.exists("cards_data.csv"):
+        try:
+            df_loaded = pd.read_csv("cards_data.csv")
+            st.session_state.cards = df_loaded.to_dict('records')
+        except:
+            st.session_state.cards = DEFAULT_CARDS
+    else:
+        st.session_state.cards = DEFAULT_CARDS
 
 if 'cards' not in st.session_state:
     st.session_state.cards = [
