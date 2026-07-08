@@ -82,6 +82,8 @@ if 'decks' not in st.session_state:
 
 if 'cards' not in st.session_state:
     st.session_state.cards = [
+        {"id": "c1", "deckId": "deck-1", "front": "憲法第9条", "back": "戦争の放棄", "importance": 5, "createdAt": "2026-07-08T00:00:00Z"},
+        {"id": "c2", "deckId": "deck-1", "front": "憲法第13条", "back": "個人の尊重", "importance": 5, "createdAt": "2026-07-08T00:00:00Z"},
         {"id": "card-1-1", "deckId": "deck-1", "front": "procrastinate", "back": "先延ばしにする、後回しにする（行動を遅らせたり、延期したりすること。）", "importance": 5, "createdAt": "2026-07-01T09:05:00Z"},
         {"id": "card-1-2", "deckId": "deck-1", "front": "resilient", "back": "回復力がある、立ち直りが早い（困難な状況から素早く立ち直る、回復力のある。）", "importance": 4, "createdAt": "2026-07-01T09:10:00Z"},
         {"id": "card-1-3", "deckId": "deck-1", "front": "conspicuous", "back": "人目を引く、目立つ（はっきりと見えて目立つ、人目を引く。）", "importance": 3, "createdAt": "2026-07-01T09:15:00Z"},
